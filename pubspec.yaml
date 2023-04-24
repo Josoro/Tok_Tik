@@ -8,13 +8,15 @@ environment:
   sdk: '>=3.0.0-417.1.beta <4.0.0'
 
 dependencies:
+  animate_do: ^3.0.2
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  intl: ^0.18.1
   provider: ^6.0.5
+  video_player: ^2.6.1
 
 dev_dependencies:
-
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
@@ -24,4 +26,4 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/videos/
+    - assets/Videos/
