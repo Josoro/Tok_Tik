@@ -1,3 +1,4 @@
+import 'package:clone_tok_tik/presentation/widgets/video/video_background.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -39,32 +40,43 @@ class _FullScreenPlayerState extends State<FullScreenPlayer> {
         if (snapshot.connectionState != ConnectionState.done) {
           return const Center(child: CircularProgressIndicator());
         }
-        return AspectRatio(
-            aspectRatio: controller.value.aspectRatio,
-            child: Stack(
-              children: [
-                VideoPlayer(controller),
+        return GestureDetector(
+          onTap: () {
+            if (controller.value.isPlaying) {
+              controller.pause();
+              return;
+            }
+            controller.play();
+          },
+          child: AspectRatio(
+              aspectRatio: controller.value.aspectRatio,
+              child: Stack(
+                children: [
+                  VideoPlayer(controller),
 
-                //Gradiente
+                  //Gradiente
+                VideoBackGround(stops: const [0.8, 1.0]),
 
-                //Texto
-                Positioned(bottom: 50, left: 20, child: _VideoCaption(caption: widget.caption))
-              ],
-            ));
+                  //Texto
+                  Positioned(
+                      bottom: 50,
+                      left: 20,
+                      child: _VideoCaption(caption: widget.caption))
+                ],
+              )),
+        );
       },
     );
   }
 }
 
 class _VideoCaption extends StatelessWidget {
-
   final String caption;
 
   const _VideoCaption({required this.caption});
 
   @override
   Widget build(BuildContext context) {
-    
     final size = MediaQuery.of(context).size;
     final titleStyle = Theme.of(context).textTheme.titleLarge;
 
